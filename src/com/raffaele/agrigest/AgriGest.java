@@ -1,0 +1,36 @@
+/* 
+ * Copyright (C) 2017 Raffaele Francesco Mancino
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+package com.raffaele.agrigest;
+
+import com.raffaele.agrigest.database.DBList;
+import com.raffaele.agrigest.database.DatabaseManager;
+
+/**
+ *
+ * @author Raffaele Francesco Mancino
+ */
+public class AgriGest
+{
+    public static DatabaseManager dbManager=new DatabaseManager(DBList.SQLite);
+    
+    public static void main(String[] args)
+    {
+        dbManager.connect("AgriGest.db");
+        AgriGest_Controller controllerApp=new AgriGest_Controller();
+    }
+}
