@@ -48,6 +48,15 @@ CREATE TABLE "Coltura" (
 	`idFamiglia`	INTEGER,
 	FOREIGN KEY(`idFamiglia`) REFERENCES `Famiglia`(`id`)
 );
+CREATE TABLE `AppezzamentoColtura` (
+	`idAppezzamento`	INTEGER,
+	`idColtura`	INTEGER,
+	`dataSemina`	DATA NOT NULL,
+	`dataRaccolta`	DATA,
+	PRIMARY KEY(`idAppezzamento`,`idColtura`),
+	FOREIGN KEY(`idAppezzamento`) REFERENCES Appezzamento(id),
+	FOREIGN KEY(`idColtura`) REFERENCES Coltura(id)
+);
 CREATE TABLE `Appezzamento` (
 	`id`	INTEGER PRIMARY KEY AUTOINCREMENT,
 	`nome`	TEXT NOT NULL,

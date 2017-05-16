@@ -26,7 +26,13 @@ import java.util.ArrayList;
  */
 public abstract class Model {
     private ArrayList<IView> listView=new ArrayList<IView>();
+    protected ArrayList list;
     protected String nome;
+    
+    public ArrayList getList()
+    {
+        return this.list;
+    }
     
     public void addView(IView view)
     {

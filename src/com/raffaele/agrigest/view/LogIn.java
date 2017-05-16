@@ -18,7 +18,6 @@
 package com.raffaele.agrigest.view;
 
 import com.raffaele.agrigest.AgriGest_Controller;
-import com.raffaele.agrigest.model.Appezzamento_model;
 import com.raffaele.agrigest.model.Masseria;
 import com.raffaele.agrigest.model.Masseria_model;
 import java.util.ArrayList;
@@ -129,10 +128,9 @@ public class LogIn extends javax.swing.JFrame implements IView{
     private void jButtonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectActionPerformed
         int raw=jTable1.getSelectedRow();
         DefaultTableModel dtable = (DefaultTableModel)this.jTable1.getModel();
-        String masseria=(String)dtable.getValueAt(raw, 0);
-        this.masseria_m.loadByName(masseria);
-        this.setVisible(false);
-        this.parent.openMain();
+        this.parent.S_masseria_selected((String)dtable.getValueAt(raw, 0));
+        
+        this.dispose();        
     }//GEN-LAST:event_jButtonSelectActionPerformed
 
     /**

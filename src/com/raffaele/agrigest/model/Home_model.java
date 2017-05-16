@@ -17,14 +17,24 @@
  */
 package com.raffaele.agrigest.model;
 
+import com.raffaele.agrigest.AgriGest;
+import java.util.ArrayList;
+
 /**
  *
  * @author Raffaele Francesco Mancino
  */
-public class Appezzamento
+public class Home_model extends Model
 {
-    public int id;
-    public String nome;
-    public float dimensione;
-    public int idMasseria;
+    {
+        this.nome="Home";
+        this.list=new ArrayList<AppezzamentoColtura>();
+    }
+    
+    public void loadAppezzamentoAndCultura(int idMasseria)
+    {
+        this.list=AgriGest.databaseAccessLayer.selectAppezzamentoWithColtura(idMasseria);
+        if(!this.list.isEmpty())
+            super.sendChanges();
+    }
 }

@@ -18,8 +18,6 @@
 package com.raffaele.agrigest.model;
 
 import com.raffaele.agrigest.AgriGest;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -36,46 +34,14 @@ public class Masseria_model extends Model
     }
     public void loadAll()
     {
-        String str="SELECT * FROM masseria ORDER BY masseria.id ASC";
-        this.list=new ArrayList<Masseria>();
-        ResultSet rs=AgriGest.dbManager.query(str);
-        if(rs!=null)
-        {
-            try {
-                while(rs.next())
-                {
-                    Masseria m=new Masseria();
-                    m.id=rs.getInt("id");
-                    m.nome=rs.getString("nome");
-                    this.list.add(m);
-                }                
-            } catch (SQLException ex) {
-                System.err.println(ex.toString());
-            }
-            super.sendChanges();
-        }
+        this.list=AgriGest.databaseAccessLayer.selectMasseria();
+        super.sendChanges();
     }
     
     public void loadByName(String nome)
     {
-        String str="SELECT * FROM masseria WHERE masseria.nome=\"" + nome + "\"";
-        this.list=new ArrayList<Masseria>();
-        ResultSet rs=AgriGest.dbManager.query(str);
-        if(rs!=null)
-        {
-            try {
-                while(rs.next())
-                {
-                    Masseria m=new Masseria();
-                    m.id=rs.getInt("id");
-                    m.nome=rs.getString("nome");
-                    this.list.add(m);
-                }                
-            } catch (SQLException ex) {
-                System.err.println(ex.toString());
-            }
-            super.sendChanges();
-        }
+        this.list=AgriGest.databaseAccessLayer.selectMasseriaByName(nome);
+        super.sendChanges();
     }
     
     public Masseria getMasseria(int i)

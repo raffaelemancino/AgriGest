@@ -17,8 +17,8 @@
  */
 package com.raffaele.agrigest;
 
-import com.raffaele.agrigest.model.Appezzamento_model;
-import com.raffaele.agrigest.view.Masseria_view;
+import com.raffaele.agrigest.model.Home_model;
+import com.raffaele.agrigest.view.Home_view;
 import com.raffaele.agrigest.view.BaseWindow;
 import com.raffaele.agrigest.model.Masseria_model;
 import com.raffaele.agrigest.view.LogIn;
@@ -27,27 +27,28 @@ import javax.swing.JPanel;
 /**
  *
  * @author Raffaele Francesco Mancino
+ * 
+ * S_methodName -> Signal get by views
  */
 public class AgriGest_Controller
 {
     BaseWindow baseWindow=new BaseWindow();
     
     Masseria_model masseria_model = new Masseria_model();
-    Appezzamento_model appezzamento_model=new Appezzamento_model();
-    Masseria_view masseria_view=new Masseria_view(this.masseria_model,this.appezzamento_model);
-    LogIn logIn=new LogIn(this.masseria_model, this);
+    Home_model home_model=new Home_model();
     
     public AgriGest_Controller()
     {
+        LogIn logIn=new LogIn(this.masseria_model, this);
+        Home_view home_view=new Home_view(this, this.home_model);
+        
         this.masseria_model.addView(logIn);
+        this.home_model.addView(home_view);
         this.masseria_model.loadAll();
-        this.logIn.setVisible(true);
-    }
-    
-    public void openMain()
-    {
-        this.new_view(masseria_view);
+        
+        this.new_view(home_view);
         this.baseWindow.setVisible(true);
+        logIn.setVisible(true);
     }
     
     public void new_view(JPanel jPanel)
@@ -55,5 +56,11 @@ public class AgriGest_Controller
         baseWindow.setContentPane(jPanel);
         baseWindow.revalidate();
         baseWindow.repaint();
+    }
+    
+    public void S_masseria_selected(String name)
+    {
+        this.masseria_model.loadByName(name);
+        this.home_model.loadAppezzamentoAndCultura(this.masseria_model.getMasseria(0).id);
     }
 }

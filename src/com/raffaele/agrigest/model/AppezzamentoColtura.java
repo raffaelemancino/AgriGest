@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Raffaele Francesco Mancino
  *
  * This program is free software; you can redistribute it and/or
@@ -15,20 +15,15 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.raffaele.agrigest;
-
-import com.raffaele.agrigest.database.DatabaseAccessLayer;
+package com.raffaele.agrigest.model;
 
 /**
  *
  * @author Raffaele Francesco Mancino
  */
-public class AgriGest
+public class AppezzamentoColtura
 {
-    public static DatabaseAccessLayer databaseAccessLayer=new DatabaseAccessLayer();
-    
-    public static void main(String[] args)
-    {
-        new AgriGest_Controller();
-    }
+    public String nomeAppezzamento;
+    public float dimensione;
+    public String nomeColtura;
 }
