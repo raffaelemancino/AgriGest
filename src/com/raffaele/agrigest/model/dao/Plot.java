@@ -15,15 +15,15 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.raffaele.agrigest.model;
+package com.raffaele.agrigest.model.dao;
 
 /**
  *
  * @author Raffaele Francesco Mancino
  */
-public class AppezzamentoColtura
+public class Plot
 {
-    public String nomeAppezzamento;
-    public float dimensione;
-    public String nomeColtura;
+    public int idPlot;
+    public String namePlot;
+    public float sizePlot;
 }

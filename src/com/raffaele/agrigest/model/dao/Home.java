@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Raffaele Francesco Mancino
  *
  * This program is free software; you can redistribute it and/or
@@ -15,39 +15,15 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.raffaele.agrigest.model;
-
-import com.raffaele.agrigest.view.IView;
-import java.util.ArrayList;
+package com.raffaele.agrigest.model.dao;
 
 /**
  *
  * @author Raffaele Francesco Mancino
  */
-public abstract class Model {
-    private ArrayList<IView> listView=new ArrayList<IView>();
-    protected ArrayList list;
-    
-    public ArrayList getList()
-    {
-        return this.list;
-    }
-    
-    public void addView(IView view)
-    {
-        this.listView.add(view);
-    }
-    
-    public IView getListView(int i)
-    {
-        return this.listView.get(i);
-    }
-    
-    protected void sendChanges()
-    {
-        for(int i=0;i<this.listView.size();i++)
-        {
-            this.listView.get(i).update();
-        }
-    }
+public class Home {
+
+    public String namePlot;
+    public float sizePlot;
+    public String nameColture;
 }

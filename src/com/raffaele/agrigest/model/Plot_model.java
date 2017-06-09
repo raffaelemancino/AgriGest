@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Raffaele Francesco Mancino
  *
  * This program is free software; you can redistribute it and/or
@@ -17,37 +17,22 @@
  */
 package com.raffaele.agrigest.model;
 
-import com.raffaele.agrigest.view.IView;
+import com.raffaele.agrigest.AgriGest;
+import com.raffaele.agrigest.model.dao.Plot;
 import java.util.ArrayList;
 
 /**
  *
  * @author Raffaele Francesco Mancino
  */
-public abstract class Model {
-    private ArrayList<IView> listView=new ArrayList<IView>();
-    protected ArrayList list;
-    
-    public ArrayList getList()
+public class Plot_model extends Model
+{
     {
-        return this.list;
+        this.list=new ArrayList<Plot>();
     }
     
-    public void addView(IView view)
+    public void addPlot(String n, float s)
     {
-        this.listView.add(view);
-    }
-    
-    public IView getListView(int i)
-    {
-        return this.listView.get(i);
-    }
-    
-    protected void sendChanges()
-    {
-        for(int i=0;i<this.listView.size();i++)
-        {
-            this.listView.get(i).update();
-        }
+        AgriGest.databaseAccessLayer.addPlot(n, s);
     }
 }

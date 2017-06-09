@@ -17,6 +17,7 @@
  */
 package com.raffaele.agrigest.view;
 
+import com.raffaele.agrigest.AgriGest;
 import javax.swing.JPanel;
 
 /**
@@ -24,7 +25,7 @@ import javax.swing.JPanel;
  * @author Raffaele Francesco Mancino
  */
 public class BaseWindow extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form BaseWindow
      */
@@ -45,9 +46,13 @@ public class BaseWindow extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMenuBar = new javax.swing.JMenuBar();
+        jMenuCompany = new javax.swing.JMenu();
+        jMenuField = new javax.swing.JMenu();
+        jMenuItemPlotAdd = new javax.swing.JMenuItem();
+        jMenuWarehouse = new javax.swing.JMenu();
+        jMenuMonitoring = new javax.swing.JMenu();
+        jMenuPrint = new javax.swing.JMenu();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,13 +83,45 @@ public class BaseWindow extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("AgriGest");
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        jMenuCompany.setText("Azienda");
+        jMenuCompany.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuCompanyMouseClicked(evt);
+            }
+        });
+        jMenuBar.add(jMenuCompany);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMenuField.setText("Campi");
+        jMenuField.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jMenuFieldAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
-        setJMenuBar(jMenuBar1);
+        jMenuItemPlotAdd.setText("Aggiungi Appezzamento");
+        jMenuItemPlotAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPlotAddActionPerformed(evt);
+            }
+        });
+        jMenuField.add(jMenuItemPlotAdd);
+
+        jMenuBar.add(jMenuField);
+
+        jMenuWarehouse.setText("Magazzini");
+        jMenuBar.add(jMenuWarehouse);
+
+        jMenuMonitoring.setText("Monitoraggi");
+        jMenuBar.add(jMenuMonitoring);
+
+        jMenuPrint.setText("Stampe");
+        jMenuBar.add(jMenuPrint);
+
+        setJMenuBar(jMenuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,6 +139,18 @@ public class BaseWindow extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(816, 639));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuFieldAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jMenuFieldAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuFieldAncestorAdded
+
+    private void jMenuItemPlotAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPlotAddActionPerformed
+        AgriGest.appController.startPlot();
+    }//GEN-LAST:event_jMenuItemPlotAddActionPerformed
+
+    private void jMenuCompanyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCompanyMouseClicked
+        AgriGest.appController.startHome();
+    }//GEN-LAST:event_jMenuCompanyMouseClicked
 
     /**
      * @param args the command line arguments
@@ -143,9 +192,13 @@ public class BaseWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenu jMenuCompany;
+    private javax.swing.JMenu jMenuField;
+    private javax.swing.JMenuItem jMenuItemPlotAdd;
+    private javax.swing.JMenu jMenuMonitoring;
+    private javax.swing.JMenu jMenuPrint;
+    private javax.swing.JMenu jMenuWarehouse;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;

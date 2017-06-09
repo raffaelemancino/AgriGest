@@ -17,6 +17,7 @@
  */
 package com.raffaele.agrigest.model;
 
+import com.raffaele.agrigest.model.dao.Home;
 import com.raffaele.agrigest.AgriGest;
 import java.util.ArrayList;
 
@@ -27,13 +28,13 @@ import java.util.ArrayList;
 public class Home_model extends Model
 {
     {
-        this.nome="Home";
-        this.list=new ArrayList<AppezzamentoColtura>();
+        this.list=new ArrayList<Home>();
     }
     
     public void loadAppezzamentoAndCultura(int idMasseria)
     {
-        this.list=AgriGest.databaseAccessLayer.selectAppezzamentoWithColtura(idMasseria);
+        
+        this.list=AgriGest.databaseAccessLayer.selectPlotWithCulture(idMasseria);
         if(!this.list.isEmpty())
             super.sendChanges();
     }

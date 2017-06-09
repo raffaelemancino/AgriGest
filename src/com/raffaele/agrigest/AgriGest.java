@@ -17,6 +17,7 @@
  */
 package com.raffaele.agrigest;
 
+import com.raffaele.agrigest.controller.AgriGest_Controller;
 import com.raffaele.agrigest.database.DatabaseAccessLayer;
 
 /**
@@ -26,9 +27,10 @@ import com.raffaele.agrigest.database.DatabaseAccessLayer;
 public class AgriGest
 {
     public static DatabaseAccessLayer databaseAccessLayer=new DatabaseAccessLayer();
+    public static AgriGest_Controller appController;
     
     public static void main(String[] args)
     {
-        new AgriGest_Controller();
+        appController=new AgriGest_Controller();
     }
 }

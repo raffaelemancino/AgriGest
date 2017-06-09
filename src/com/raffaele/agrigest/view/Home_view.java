@@ -17,8 +17,7 @@
  */
 package com.raffaele.agrigest.view;
 
-import com.raffaele.agrigest.AgriGest_Controller;
-import com.raffaele.agrigest.model.AppezzamentoColtura;
+import com.raffaele.agrigest.model.dao.Home;
 import com.raffaele.agrigest.model.Home_model;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -28,16 +27,14 @@ import javax.swing.table.DefaultTableModel;
  * @author Raffaele Francesco Mancino
  */
 public class Home_view extends javax.swing.JPanel implements IView {
-    Home_model home_model;
-    AgriGest_Controller parent;
+    private Home_model home_model;
     
     /**
      * Creates new form Masseria_view
      */
-    public Home_view(AgriGest_Controller p, Home_model h) {
+    public Home_view(Home_model h) {
         initComponents();
         this.home_model=h;
-        this.parent=p;
     }
 
     /**
@@ -147,24 +144,21 @@ public class Home_view extends javax.swing.JPanel implements IView {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update(String n)
+    public void update()
     {
-        if(n=="Home")
+        DefaultTableModel model=(DefaultTableModel)this.jTable1.getModel();
+        if(model.getRowCount()>0)
         {
-            DefaultTableModel model=(DefaultTableModel)this.jTable1.getModel();
-            if(model.getRowCount()>0)
+            int count=model.getRowCount();
+            for(int i=count;i>0;i--)
             {
-                int count=model.getRowCount();
-                for(int i=count;i>0;i--)
-                {
-                    model.removeRow(i-1);
-                }
+                model.removeRow(i-1);
             }
-            ArrayList<AppezzamentoColtura> list=this.home_model.getList();
-            for(int i=0;i<list.size();i++)
-            {
-                model.addRow(new Object[]{list.get(i).nomeAppezzamento,list.get(i).dimensione,list.get(i).nomeColtura});
-            }
+        }
+        ArrayList<Home> list=this.home_model.getList();
+        for(int i=0;i<list.size();i++)
+        {
+            model.addRow(new Object[]{list.get(i).namePlot,list.get(i).sizePlot,list.get(i).nameColture});
         }
     }
 }

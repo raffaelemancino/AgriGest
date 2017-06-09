@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Raffaele Francesco Mancino
  *
  * This program is free software; you can redistribute it and/or
@@ -17,12 +17,35 @@
  */
 package com.raffaele.agrigest.model;
 
+import com.raffaele.agrigest.model.dao.Login;
+import com.raffaele.agrigest.AgriGest;
+import java.util.ArrayList;
+
 /**
  *
  * @author Raffaele Francesco Mancino
  */
-public class Masseria
+public class Login_model extends Model
 {
-    public int id;
-    public String nome;
+    
+    {
+        this.list=new ArrayList<Login>();
+    }
+    
+    public void loadAll()
+    {
+        this.list=AgriGest.databaseAccessLayer.selectMasseria();
+        super.sendChanges();
+    }
+    
+    public void loadByName(String nome)
+    {
+        this.list=AgriGest.databaseAccessLayer.selectMasseriaByName(nome);
+        super.sendChanges();
+    }
+    
+    public Login getMasseria(int i)
+    {
+        return (Login)this.list.get(i);
+    }
 }

@@ -23,5 +23,5 @@ package com.raffaele.agrigest.view;
  */
 public interface IView
 {
-    public void update(String n);
+    public void update();
 }

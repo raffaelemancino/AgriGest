@@ -1,4 +1,4 @@
-/* 
+/*
  * Copyright (C) 2017 Raffaele Francesco Mancino
  *
  * This program is free software; you can redistribute it and/or
@@ -15,39 +15,28 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
-package com.raffaele.agrigest.model;
+package com.raffaele.agrigest.controller;
 
-import com.raffaele.agrigest.view.IView;
-import java.util.ArrayList;
+import com.raffaele.agrigest.AgriGest;
+import com.raffaele.agrigest.model.Plot_model;
+import com.raffaele.agrigest.view.PlotAdd_view;
 
 /**
  *
  * @author Raffaele Francesco Mancino
  */
-public abstract class Model {
-    private ArrayList<IView> listView=new ArrayList<IView>();
-    protected ArrayList list;
+public class Plot_Controller
+{
+    private Plot_model plot_model=new Plot_model();
     
-    public ArrayList getList()
+    public Plot_Controller()
     {
-        return this.list;
+        AgriGest.appController.new_view(new PlotAdd_view(this.plot_model,this));
     }
     
-    public void addView(IView view)
+    public void addPlot(String n, float s)
     {
-        this.listView.add(view);
-    }
-    
-    public IView getListView(int i)
-    {
-        return this.listView.get(i);
-    }
-    
-    protected void sendChanges()
-    {
-        for(int i=0;i<this.listView.size();i++)
-        {
-            this.listView.get(i).update();
-        }
+        this.plot_model.addPlot(n, s);
+        AgriGest.appController.startHome();
     }
 }

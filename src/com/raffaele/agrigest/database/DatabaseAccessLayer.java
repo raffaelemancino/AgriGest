@@ -17,8 +17,10 @@
  */
 package com.raffaele.agrigest.database;
 
-import com.raffaele.agrigest.model.AppezzamentoColtura;
-import com.raffaele.agrigest.model.Masseria;
+import com.raffaele.agrigest.AgriGest;
+import com.raffaele.agrigest.model.dao.Home;
+import com.raffaele.agrigest.model.dao.Login;
+import com.raffaele.agrigest.model.dao.Plot;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -36,19 +38,19 @@ public class DatabaseAccessLayer
         this.databaseManager.connect("Agrigest.db");
     }
     
-    public ArrayList<Masseria> selectMasseria()
+    public ArrayList<Login> selectMasseria()
     {
         String str="SELECT * FROM masseria ORDER BY masseria.id ASC";
-        ArrayList<Masseria> list=new ArrayList<Masseria>();
+        ArrayList<Login> list=new ArrayList<Login>();
         ResultSet rs=this.databaseManager.query(str);
         if(rs!=null)
         {
             try {
                 while(rs.next())
                 {
-                    Masseria m=new Masseria();
+                    Login m=new Login();
                     m.id=rs.getInt("id");
-                    m.nome=rs.getString("nome");
+                    m.name=rs.getString("nome");
                     list.add(m);
                 }
             } catch (SQLException ex) {
@@ -58,50 +60,56 @@ public class DatabaseAccessLayer
         return list;
     }
     
-    public ArrayList<Masseria> selectMasseriaByName(String nome)
+    public ArrayList<Login> selectMasseriaByName(String nome)
     {
         String str="SELECT * FROM masseria WHERE masseria.nome=\"" + nome + "\"";
-        ArrayList<Masseria> list=new ArrayList<Masseria>();
+        ArrayList<Login> list=new ArrayList<Login>();
         ResultSet rs=this.databaseManager.query(str);
         if(rs!=null)
         {
             try {
                 while(rs.next())
                 {
-                    Masseria m=new Masseria();
+                    Login m=new Login();
                     m.id=rs.getInt("id");
-                    m.nome=rs.getString("nome");
+                    m.name=rs.getString("nome");
                     list.add(m);
                 }
-                return list;
             } catch (SQLException ex) {
                 System.err.println(ex.toString());
             }
         }
-        return null;
+        return list;
     }
     
-    public ArrayList<AppezzamentoColtura> selectAppezzamentoWithColtura(int id)
+    public ArrayList<Home> selectPlotWithCulture(int id)
     {
-        String str="SELECT appezzamento.nome,appezzamento.dimensione, coltura.nome FROM appezzamento JOIN (appezzamentocoltura JOIN coltura ON appezzamentocoltura.idcoltura=coltura.id) ON appezzamento.id=appezzamentocoltura.idappezzamento WHERE appezzamento.idmasseria=" + id;
-        ArrayList<AppezzamentoColtura> list=new ArrayList<AppezzamentoColtura>();
+        String str="SELECT appezzamento.nome,appezzamento.dimensione,coltura.nome AS cnome FROM appezzamento LEFT JOIN (appezzamentocoltura JOIN coltura ON appezzamentocoltura.idcoltura=coltura.id) ON appezzamento.id=appezzamentocoltura.idappezzamento WHERE appezzamento.idmasseria=" + id;
+        ArrayList<Home> list=new ArrayList<Home>();
         ResultSet rs=this.databaseManager.query(str);
+        
         if(rs!=null)
         {
             try {
+                Home a;
                 while(rs.next())
                 {
-                    AppezzamentoColtura a=new AppezzamentoColtura();
-                    a.nomeColtura=rs.getString("coltura.nome");
-                    a.nomeAppezzamento=rs.getString("appezzamento.nome");
-                    a.dimensione=rs.getFloat("appezzamento.dimensione");
+                    a=new Home();
+                    a.namePlot=rs.getString("nome");
+                    a.sizePlot=rs.getFloat("dimensione");
+                    a.nameColture=rs.getString("cnome");
                     list.add(a);
                 }
-                return list;
             } catch (SQLException ex) {
                 System.err.println(ex.toString());
             }
         }
-        return null;
+        return list;
+    }
+    
+    public void addPlot(String name, float size)
+    {
+        String str="INSERT INTO Appezzamento(nome,dimensione,idMasseria) VALUES(\""+name+"\", "+size+","+AgriGest.appController.masseriaID+")";
+        this.databaseManager.insert(str);
     }
 }

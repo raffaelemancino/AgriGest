@@ -17,9 +17,9 @@
  */
 package com.raffaele.agrigest.view;
 
-import com.raffaele.agrigest.AgriGest_Controller;
-import com.raffaele.agrigest.model.Masseria;
-import com.raffaele.agrigest.model.Masseria_model;
+import com.raffaele.agrigest.AgriGest;
+import com.raffaele.agrigest.model.dao.Login;
+import com.raffaele.agrigest.model.Login_model;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,20 +27,18 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Raffaele Francesco Mancino
  */
-public class LogIn extends javax.swing.JFrame implements IView{
+public class LogIn_view extends javax.swing.JFrame implements IView{
     
-    private Masseria_model masseria_m;
-    private AgriGest_Controller parent;
+    private Login_model masseria_m;
     /**
      * Creates new form LogIn
      */
-    public LogIn(Masseria_model m, AgriGest_Controller p) {
+    public LogIn_view(Login_model m) {
         initComponents();
         this.masseria_m=m;
-        this.parent=p;
     }
     
-    public LogIn() {
+    public LogIn_view() {
         initComponents();
     }
 
@@ -128,7 +126,7 @@ public class LogIn extends javax.swing.JFrame implements IView{
     private void jButtonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectActionPerformed
         int raw=jTable1.getSelectedRow();
         DefaultTableModel dtable = (DefaultTableModel)this.jTable1.getModel();
-        this.parent.S_masseria_selected((String)dtable.getValueAt(raw, 0));
+        AgriGest.appController.S_masseria_selected((String)dtable.getValueAt(raw, 0));
         
         this.dispose();        
     }//GEN-LAST:event_jButtonSelectActionPerformed
@@ -150,20 +148,21 @@ public class LogIn extends javax.swing.JFrame implements IView{
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogIn_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogIn_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogIn_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LogIn.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LogIn_view.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LogIn().setVisible(true);
+                new LogIn_view().setVisible(true);
             }
         });
     }
@@ -176,7 +175,7 @@ public class LogIn extends javax.swing.JFrame implements IView{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update(String n) {
+    public void update() {
         DefaultTableModel model=(DefaultTableModel)this.jTable1.getModel();
         if(model.getRowCount()>0)
         {
@@ -186,10 +185,10 @@ public class LogIn extends javax.swing.JFrame implements IView{
                 model.removeRow(i-1);
             }
         }
-        ArrayList<Masseria> list=this.masseria_m.getList();
+        ArrayList<Login> list=this.masseria_m.getList();
         for(int i=0;i<list.size();i++)
         {
-            model.addRow(new Object[]{list.get(i).nome});
+            model.addRow(new Object[]{list.get(i).name});
         }
     }
 }
