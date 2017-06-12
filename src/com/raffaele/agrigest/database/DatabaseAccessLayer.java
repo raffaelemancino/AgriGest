@@ -60,9 +60,9 @@ public class DatabaseAccessLayer
         return list;
     }
     
-    public ArrayList<Login> selectMasseriaByName(String nome)
+    public ArrayList<Login> selectMasseriaByID(int id)
     {
-        String str="SELECT * FROM masseria WHERE masseria.nome=\"" + nome + "\"";
+        String str="SELECT * FROM masseria WHERE masseria.id=\"" + id + "\"";
         ArrayList<Login> list=new ArrayList<Login>();
         ResultSet rs=this.databaseManager.query(str);
         if(rs!=null)

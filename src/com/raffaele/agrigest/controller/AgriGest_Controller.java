@@ -20,8 +20,6 @@ package com.raffaele.agrigest.controller;
 import com.raffaele.agrigest.model.Home_model;
 import com.raffaele.agrigest.view.Home_view;
 import com.raffaele.agrigest.view.BaseWindow;
-import com.raffaele.agrigest.model.Login_model;
-import com.raffaele.agrigest.view.LogIn_view;
 import javax.swing.JPanel;
 
 /**
@@ -33,32 +31,23 @@ public class AgriGest_Controller
 {
     public int masseriaID;
     
-    private BaseWindow baseWindow=new BaseWindow();
-    {
-        this.baseWindow.setVisible(true);
-    }
+    private BaseWindow baseWindow=new BaseWindow(); //starting window
     
-    private Login_model login_model = new Login_model();
-    private Home_model home_model=new Home_model();
-    
-    private LogIn_view login_view=new LogIn_view(this.login_model);
-    private Home_view home_view=new Home_view(this.home_model);
+    private Home_model home_model=new Home_model(); //loading model
+    private Home_view home_view=new Home_view(this.home_model); //loading view
     
     public AgriGest_Controller()
     {
-        this.login_model.addView(login_view);
-        this.home_model.addView(home_view);
-        this.login_model.loadAll();
         
-        this.new_view(home_view);
-        login_view.setVisible(true);
     }
     
-    public void S_masseria_selected(String name)
+    public void init(int id)
     {
-        this.login_model.loadByName(name);
-        this.masseriaID=this.login_model.getMasseria(0).id;
-        this.home_model.loadAppezzamentoAndCultura(masseriaID);
+        this.baseWindow.setVisible(true); //showing window
+        this.masseriaID=id;
+        this.home_model.addView(home_view); //adding view to model
+        this.new_view(home_view); //showing view in window
+        this.startHome();
     }
     
     public void new_view(JPanel jPanel)

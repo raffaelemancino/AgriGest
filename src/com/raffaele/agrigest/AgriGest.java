@@ -19,6 +19,8 @@ package com.raffaele.agrigest;
 
 import com.raffaele.agrigest.controller.AgriGest_Controller;
 import com.raffaele.agrigest.database.DatabaseAccessLayer;
+import com.raffaele.agrigest.model.Login_model;
+import com.raffaele.agrigest.view.LogIn_view;
 
 /**
  *
@@ -27,10 +29,24 @@ import com.raffaele.agrigest.database.DatabaseAccessLayer;
 public class AgriGest
 {
     public static DatabaseAccessLayer databaseAccessLayer=new DatabaseAccessLayer();
-    public static AgriGest_Controller appController;
+    public static AgriGest_Controller appController=new AgriGest_Controller();
     
     public static void main(String[] args)
     {
-        appController=new AgriGest_Controller();
+        login();
+    }
+    
+    public static void login()
+    {
+        Login_model login_model = new Login_model();
+        LogIn_view login_view=new LogIn_view(login_model);
+        login_model.addView(login_view);
+        login_model.loadAll();
+        login_view.setVisible(true);
+    }
+    
+    public static void startApp(int idMasseria)
+    {
+        appController.init(idMasseria);
     }
 }

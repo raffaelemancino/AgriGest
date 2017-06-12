@@ -48,6 +48,7 @@ public class BaseWindow extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jMenuBar = new javax.swing.JMenuBar();
         jMenuCompany = new javax.swing.JMenu();
+        jMenuItemReLogin = new javax.swing.JMenuItem();
         jMenuField = new javax.swing.JMenu();
         jMenuItemPlotAdd = new javax.swing.JMenuItem();
         jMenuWarehouse = new javax.swing.JMenu();
@@ -89,6 +90,15 @@ public class BaseWindow extends javax.swing.JFrame {
                 jMenuCompanyMouseClicked(evt);
             }
         });
+
+        jMenuItemReLogin.setText("Re Login");
+        jMenuItemReLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemReLoginActionPerformed(evt);
+            }
+        });
+        jMenuCompany.add(jMenuItemReLogin);
+
         jMenuBar.add(jMenuCompany);
 
         jMenuField.setText("Campi");
@@ -152,6 +162,10 @@ public class BaseWindow extends javax.swing.JFrame {
         AgriGest.appController.startHome();
     }//GEN-LAST:event_jMenuCompanyMouseClicked
 
+    private void jMenuItemReLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReLoginActionPerformed
+        AgriGest.login();
+    }//GEN-LAST:event_jMenuItemReLoginActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -196,6 +210,7 @@ public class BaseWindow extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuCompany;
     private javax.swing.JMenu jMenuField;
     private javax.swing.JMenuItem jMenuItemPlotAdd;
+    private javax.swing.JMenuItem jMenuItemReLogin;
     private javax.swing.JMenu jMenuMonitoring;
     private javax.swing.JMenu jMenuPrint;
     private javax.swing.JMenu jMenuWarehouse;

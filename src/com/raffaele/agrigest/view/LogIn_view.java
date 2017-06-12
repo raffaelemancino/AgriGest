@@ -124,9 +124,18 @@ public class LogIn_view extends javax.swing.JFrame implements IView{
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSelectActionPerformed
-        int raw=jTable1.getSelectedRow();
-        DefaultTableModel dtable = (DefaultTableModel)this.jTable1.getModel();
-        AgriGest.appController.S_masseria_selected((String)dtable.getValueAt(raw, 0));
+        int id=jTable1.getSelectedRow();
+        ArrayList<Login> list=this.masseria_m.getList();
+        for(int i=0;i<list.size();i++)
+        {
+            if((String)jTable1.getValueAt(id, 0)==list.get(i).name)
+            {
+                id=list.get(i).id;
+                i=list.size();
+            }
+        }
+        
+        AgriGest.startApp(id);
         
         this.dispose();        
     }//GEN-LAST:event_jButtonSelectActionPerformed

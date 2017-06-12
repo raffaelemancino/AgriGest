@@ -27,7 +27,6 @@ import java.util.ArrayList;
  */
 public class Login_model extends Model
 {
-    
     {
         this.list=new ArrayList<Login>();
     }
@@ -35,12 +34,6 @@ public class Login_model extends Model
     public void loadAll()
     {
         this.list=AgriGest.databaseAccessLayer.selectMasseria();
-        super.sendChanges();
-    }
-    
-    public void loadByName(String nome)
-    {
-        this.list=AgriGest.databaseAccessLayer.selectMasseriaByName(nome);
         super.sendChanges();
     }
     

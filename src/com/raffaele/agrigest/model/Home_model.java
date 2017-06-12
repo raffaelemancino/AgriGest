@@ -27,15 +27,15 @@ import java.util.ArrayList;
  */
 public class Home_model extends Model
 {
+    public String masseriaName="";
     {
         this.list=new ArrayList<Home>();
     }
     
     public void loadAppezzamentoAndCultura(int idMasseria)
     {
-        
+        this.masseriaName=AgriGest.databaseAccessLayer.selectMasseriaByID(idMasseria).get(0).name;
         this.list=AgriGest.databaseAccessLayer.selectPlotWithCulture(idMasseria);
-        if(!this.list.isEmpty())
-            super.sendChanges();
+        super.sendChanges();
     }
 }
