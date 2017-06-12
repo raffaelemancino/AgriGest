@@ -63,8 +63,13 @@ public class AgriGest_Controller
         this.home_model.loadAppezzamentoAndCultura(this.masseriaID);
     }
     
-    public void startPlot()
+    public void startPlotAdd()
     {
-        new Plot_Controller();
+        new PlotAdd_Controller();
+    }
+    
+    public void startPlotDel()
+    {
+        new PlotDel_Controller();
     }
 }

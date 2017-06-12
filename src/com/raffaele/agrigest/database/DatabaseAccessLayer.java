@@ -107,9 +107,65 @@ public class DatabaseAccessLayer
         return list;
     }
     
-    public void addPlot(String name, float size)
+    public void insertPlot(String name, float size)
     {
         String str="INSERT INTO Appezzamento(nome,dimensione,idMasseria) VALUES(\""+name+"\", "+size+","+AgriGest.appController.masseriaID+")";
+        this.databaseManager.insert(str);
+    }
+    
+    public ArrayList<Plot> selectPlot()
+    {
+        String str="SELECT * FROM appezzamento WHERE idmasseria=" + AgriGest.appController.masseriaID;
+        ArrayList<Plot> list=new ArrayList<Plot>();
+        ResultSet rs=this.databaseManager.query(str);
+        
+        if(rs!=null)
+        {
+            try {
+                Plot a;
+                while(rs.next())
+                {
+                    a=new Plot();
+                    a.idPlot=rs.getInt("id");
+                    a.namePlot=rs.getString("nome");
+                    a.sizePlot=rs.getFloat("dimensione");
+                    list.add(a);
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.toString());
+            }
+        }
+        return list;
+    }
+    
+    public ArrayList<Plot> selectPlotByName(String name)
+    {
+        String str="SELECT * FROM appezzamento WHERE nome=\""+name+"\"";
+        ArrayList<Plot> list=new ArrayList<Plot>();
+        ResultSet rs=this.databaseManager.query(str);
+        
+        if(rs!=null)
+        {
+            try {
+                Plot a;
+                while(rs.next())
+                {
+                    a=new Plot();
+                    a.idPlot=rs.getInt("id");
+                    a.namePlot=rs.getString("nome");
+                    a.sizePlot=rs.getFloat("dimensione");
+                    list.add(a);
+                }
+            } catch (SQLException ex) {
+                System.err.println(ex.toString());
+            }
+        }
+        return list;
+    }
+    
+    public void deletePlot(int id)
+    {
+        String str="DELETE FROM appezzamento WHERE id="+id;
         this.databaseManager.insert(str);
     }
 }

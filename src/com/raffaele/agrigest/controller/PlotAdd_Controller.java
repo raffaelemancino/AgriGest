@@ -25,18 +25,18 @@ import com.raffaele.agrigest.view.PlotAdd_view;
  *
  * @author Raffaele Francesco Mancino
  */
-public class Plot_Controller
+public class PlotAdd_Controller
 {
     private Plot_model plot_model=new Plot_model();
     
-    public Plot_Controller()
+    public PlotAdd_Controller()
     {
         AgriGest.appController.new_view(new PlotAdd_view(this.plot_model,this));
     }
     
-    public void addPlot(String n, float s)
+    public void insertPlot(String n, float s)
     {
-        this.plot_model.addPlot(n, s);
+        this.plot_model.insertPlot(n, s);
         AgriGest.appController.startHome();
     }
 }

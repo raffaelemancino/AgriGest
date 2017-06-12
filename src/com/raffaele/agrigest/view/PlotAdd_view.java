@@ -17,7 +17,7 @@
  */
 package com.raffaele.agrigest.view;
 
-import com.raffaele.agrigest.controller.Plot_Controller;
+import com.raffaele.agrigest.controller.PlotAdd_Controller;
 import com.raffaele.agrigest.model.Plot_model;
 
 /**
@@ -27,12 +27,12 @@ import com.raffaele.agrigest.model.Plot_model;
 public class PlotAdd_view extends javax.swing.JPanel {
 
     private Plot_model plot_model;
-    private Plot_Controller controller;
+    private PlotAdd_Controller controller;
     
     /**
      * Creates new form AppezzamentoAdd
      */
-    public PlotAdd_view(Plot_model m,Plot_Controller c)
+    public PlotAdd_view(Plot_model m,PlotAdd_Controller c)
     {
         this.plot_model=m;
         this.controller=c;
@@ -113,7 +113,7 @@ public class PlotAdd_view extends javax.swing.JPanel {
     }//GEN-LAST:event_jTextFieldNameActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        this.controller.addPlot(this.jTextFieldName.getText(),Float.parseFloat(this.jTextFieldSize.getText()));
+        this.controller.insertPlot(this.jTextFieldName.getText(),Float.parseFloat(this.jTextFieldSize.getText()));
     }//GEN-LAST:event_jButtonAddActionPerformed
 
 

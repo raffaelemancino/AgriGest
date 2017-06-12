@@ -46,11 +46,13 @@ public class BaseWindow extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jMenuBar = new javax.swing.JMenuBar();
+        jMenuBarPlotAdd = new javax.swing.JMenuBar();
         jMenuCompany = new javax.swing.JMenu();
+        jMenuItemHome = new javax.swing.JMenuItem();
         jMenuItemReLogin = new javax.swing.JMenuItem();
         jMenuField = new javax.swing.JMenu();
         jMenuItemPlotAdd = new javax.swing.JMenuItem();
+        jMenuItemPlotDel = new javax.swing.JMenuItem();
         jMenuWarehouse = new javax.swing.JMenu();
         jMenuMonitoring = new javax.swing.JMenu();
         jMenuPrint = new javax.swing.JMenu();
@@ -90,6 +92,19 @@ public class BaseWindow extends javax.swing.JFrame {
                 jMenuCompanyMouseClicked(evt);
             }
         });
+        jMenuCompany.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuCompanyActionPerformed(evt);
+            }
+        });
+
+        jMenuItemHome.setText("Home");
+        jMenuItemHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemHomeActionPerformed(evt);
+            }
+        });
+        jMenuCompany.add(jMenuItemHome);
 
         jMenuItemReLogin.setText("Re Login");
         jMenuItemReLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +114,7 @@ public class BaseWindow extends javax.swing.JFrame {
         });
         jMenuCompany.add(jMenuItemReLogin);
 
-        jMenuBar.add(jMenuCompany);
+        jMenuBarPlotAdd.add(jMenuCompany);
 
         jMenuField.setText("Campi");
         jMenuField.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -111,6 +126,11 @@ public class BaseWindow extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        jMenuField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuFieldMouseClicked(evt);
+            }
+        });
 
         jMenuItemPlotAdd.setText("Aggiungi Appezzamento");
         jMenuItemPlotAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -120,18 +140,31 @@ public class BaseWindow extends javax.swing.JFrame {
         });
         jMenuField.add(jMenuItemPlotAdd);
 
-        jMenuBar.add(jMenuField);
+        jMenuItemPlotDel.setText("Rimuovi Appezzamento");
+        jMenuItemPlotDel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuItemPlotDelMouseClicked(evt);
+            }
+        });
+        jMenuItemPlotDel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemPlotDelActionPerformed(evt);
+            }
+        });
+        jMenuField.add(jMenuItemPlotDel);
+
+        jMenuBarPlotAdd.add(jMenuField);
 
         jMenuWarehouse.setText("Magazzini");
-        jMenuBar.add(jMenuWarehouse);
+        jMenuBarPlotAdd.add(jMenuWarehouse);
 
         jMenuMonitoring.setText("Monitoraggi");
-        jMenuBar.add(jMenuMonitoring);
+        jMenuBarPlotAdd.add(jMenuMonitoring);
 
         jMenuPrint.setText("Stampe");
-        jMenuBar.add(jMenuPrint);
+        jMenuBarPlotAdd.add(jMenuPrint);
 
-        setJMenuBar(jMenuBar);
+        setJMenuBar(jMenuBarPlotAdd);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -155,16 +188,36 @@ public class BaseWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuFieldAncestorAdded
 
     private void jMenuItemPlotAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPlotAddActionPerformed
-        AgriGest.appController.startPlot();
+        AgriGest.appController.startPlotAdd();
     }//GEN-LAST:event_jMenuItemPlotAddActionPerformed
 
     private void jMenuCompanyMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuCompanyMouseClicked
-        AgriGest.appController.startHome();
+        
     }//GEN-LAST:event_jMenuCompanyMouseClicked
 
     private void jMenuItemReLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemReLoginActionPerformed
         AgriGest.login();
     }//GEN-LAST:event_jMenuItemReLoginActionPerformed
+
+    private void jMenuItemHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHomeActionPerformed
+        AgriGest.appController.startHome();
+    }//GEN-LAST:event_jMenuItemHomeActionPerformed
+
+    private void jMenuCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCompanyActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuCompanyActionPerformed
+
+    private void jMenuFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuFieldMouseClicked
+        
+    }//GEN-LAST:event_jMenuFieldMouseClicked
+
+    private void jMenuItemPlotDelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItemPlotDelMouseClicked
+       
+    }//GEN-LAST:event_jMenuItemPlotDelMouseClicked
+
+    private void jMenuItemPlotDelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemPlotDelActionPerformed
+         AgriGest.appController.startPlotDel();
+    }//GEN-LAST:event_jMenuItemPlotDelActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,16 +253,14 @@ public class BaseWindow extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void setContent(JPanel jPanel)
-    {
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuBar jMenuBar;
+    private javax.swing.JMenuBar jMenuBarPlotAdd;
     private javax.swing.JMenu jMenuCompany;
     private javax.swing.JMenu jMenuField;
+    private javax.swing.JMenuItem jMenuItemHome;
     private javax.swing.JMenuItem jMenuItemPlotAdd;
+    private javax.swing.JMenuItem jMenuItemPlotDel;
     private javax.swing.JMenuItem jMenuItemReLogin;
     private javax.swing.JMenu jMenuMonitoring;
     private javax.swing.JMenu jMenuPrint;

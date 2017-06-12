@@ -20,6 +20,7 @@ package com.raffaele.agrigest.model;
 import com.raffaele.agrigest.AgriGest;
 import com.raffaele.agrigest.model.dao.Plot;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -31,8 +32,30 @@ public class Plot_model extends Model
         this.list=new ArrayList<Plot>();
     }
     
-    public void addPlot(String n, float s)
+    public void insertPlot(String n, float s)
     {
-        AgriGest.databaseAccessLayer.addPlot(n, s);
+        AgriGest.databaseAccessLayer.insertPlot(n, s);
+    }
+    
+    public void selectPlot()
+    {
+        this.list=AgriGest.databaseAccessLayer.selectPlot();
+        super.sendChanges();
+    }
+    
+    public void deletePlotByName(String n)
+    {
+        Plot p=AgriGest.databaseAccessLayer.selectPlotByName(n).get(0);
+        int id=p.idPlot;
+        int response=JOptionPane.showConfirmDialog(null,new String("Vuoi davvero cancellare"
+                + "\nl'appezzamento: "+p.namePlot
+                +"\ndi dimensioni: "+p.sizePlot), "Cancellare Appezzamento", JOptionPane.YES_NO_OPTION);
+        if(response==0)
+        {            
+            AgriGest.databaseAccessLayer.deletePlot(id);
+            JOptionPane.showMessageDialog(null, new String("Cancellazione Avvenuta"), "Cancellazione", JOptionPane.YES_OPTION);
+        }else{
+            JOptionPane.showMessageDialog(null, new String("Cancellazione Abortita"), "Cancellazione", JOptionPane.YES_OPTION);
+        }
     }
 }
