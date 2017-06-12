@@ -25,6 +25,7 @@ import com.raffaele.agrigest.view.LogIn_view;
 /**
  *
  * @author Raffaele Francesco Mancino
+ * @version 0.2
  */
 public class AgriGest
 {
